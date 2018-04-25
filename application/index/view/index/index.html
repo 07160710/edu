@@ -1,16 +1,13 @@
-{include file="public/meta" /}
-
-    <title>H-ui.admin v3.0</title>
-    <meta name="keywords" content="H-ui.admin v3.0,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
-    <meta name="description" content="H-ui.admin v3.0，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
+{extend name="public/base" /}
+{block name="seo"}
+<title>{$title|default='页面标题'}</title>
+<meta name="keywords" content="{$keywords|default='页面关键词'}">
+<meta name="description" content="{$desc|default='页面描述'}">
 </head>
 <body>
-
-{include file="public/header" /}
-
-{include file="public/menu" /}
-
-
+<!--{__block__}-->
+{/block}
+{block name="content"}
 <section class="Hui-article-box">
     <nav class="breadcrumb"><i class="Hui-iconfont"></i> <a href="/" class="maincolor">首页</a>
         <span class="c-999 en">&gt;</span>
@@ -130,19 +127,12 @@
         </footer>
     </div>
 </section>
+{/block}
 
-
-{include file="public/footer" /}
-<!--请在下方写此页面业务相关的脚本-->
+{block name="js"}
 <script type="text/javascript">
 
 </script>
-<!--/请在上方写此页面业务相关的脚本-->
-
-<!--此乃百度统计代码，请自行删除-->
-<script>
-
-</script>
-<!--/此乃百度统计代码，请自行删除-->
+{/block}
 </body>
 </html>
