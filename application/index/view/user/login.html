@@ -54,7 +54,7 @@
 			</div>
 			<div class="row cl">
 				<div class="formControls col-xs-8 col-xs-offset-3">
-					<input name="" type="button" id="login" class="btn btn-success radius size-L" value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;">
+					<input id="login" name="login" type="button" class="btn btn-success radius size-L" value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;">
 				</div>
 			</div>
 		</form>
@@ -68,20 +68,26 @@
 		$("#login").on("click",function () {
 			$.ajax({
 				type:"POST",
-				url:"{url:('checkLogin')}",
+				url:"{:url('checkLogin')}",
 				data:$("form").serialize(),
 				dataType:'json',
-				success:function () {
-
+				success:function (data) {
+				   if(data.status == 1){
+				       alert(data.message);
+				       window.location.href="{:url('index/index')}";
+				   }else{
+				       alert(data.message);
+				   }
                 }
 			})
         })
     })
-
-	function refreshVerify(){
-		var ts = Date.parse(new Date())/1000;
-	    $("#verify_img").attr("src" , "{:captcha_src()}?id="+ts);
-	}
+</script>
+<script>
+    function refreshVerify(){
+        var ts = Date.parse(new Date())/1000;
+        $("#verify_img").attr("src" , "{:captcha_src()}?id="+ts);
+    }
 </script>
 </body>
 </html>
