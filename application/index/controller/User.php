@@ -17,6 +17,7 @@ class User extends Base
 {
     public function login()
     {
+        $this->alreadyLogin();
         return $this -> view -> fetch();
     }
     public function checkLogin(Request $request)
