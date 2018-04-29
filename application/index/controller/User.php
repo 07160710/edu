@@ -11,6 +11,7 @@ namespace app\index\controller;
 use app\index\controller\Base;
 use think\Request;
 use app\index\model\User as UserModel;
+use think\Session;
 
 class User extends Base
 {
@@ -51,6 +52,8 @@ class User extends Base
             }else{
                 $status = 1;
                 $result = '验证通过,点击[确定]后进入后台';
+                Session::set('user_id',$user->id);//用户id
+                Session::set('user_info',$user->getData());//获取用户所有信息
             }
         }
 
@@ -62,8 +65,11 @@ class User extends Base
         //var_dump($result);
 
     }
+    //退出登录
     public function logout()
     {
-
+        Session::delete('user_id');
+        Session::delete('user_info');
+        $this->success('注销登录，正在返回','user/login');
     }
 }
